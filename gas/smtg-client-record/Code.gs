@@ -205,12 +205,12 @@ function ensureDatabase_() {
   const properties = PropertiesService.getUserProperties();
   const id = properties.getProperty(DB_PROPERTY);
   if (id) {
-    try { const existing = SpreadsheetApp.openById(id); ensureSheets_(existing); return existing; } catch (error) { properties.deleteProperty(DB_PROPERTY); }
+    try { return SpreadsheetApp.openById(id); } catch (error) { properties.deleteProperty(DB_PROPERTY); }
   }
   const db = SpreadsheetApp.create(APP_NAME + ' データ');
-  properties.setProperty(DB_PROPERTY, db.getId());
   ensureSheets_(db);
   setSetting_(db, 'createdAt', isoNow_());
+  properties.setProperty(DB_PROPERTY, db.getId());
   return db;
 }
 
@@ -219,8 +219,10 @@ function ensureSheets_(db) {
     let sheet = db.getSheetByName(name);
     if (!sheet) sheet = index === 0 && db.getSheets().length === 1 && db.getSheets()[0].getLastRow() === 0 ? db.getSheets()[0].setName(name) : db.insertSheet(name);
     const headers = SHEETS[name];
-    if (sheet.getLastRow() === 0) sheet.getRange(1, 1, 1, headers.length).setValues([headers]).setFontWeight('bold').setBackground('#183d35').setFontColor('#ffffff');
-    sheet.setFrozenRows(1);
+    if (sheet.getLastRow() === 0) {
+      sheet.getRange(1, 1, 1, headers.length).setValues([headers]).setFontWeight('bold').setBackground('#183d35').setFontColor('#ffffff');
+      sheet.setFrozenRows(1);
+    }
   });
 }
 
