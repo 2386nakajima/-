@@ -8,6 +8,10 @@
 
 WakeUpQRを商用ローンチするための計画書一式（`docs/`）と公開用LP（`lp/`）:
 
+- [月5万円収益化プラン](docs/revenue-50k-plan.md) — **最重要**。90日で月5万円に到達するための実行計画
+- [出品文・提案文テンプレ集](docs/service-listings.md) — ココナラ／クラウドワークスにそのまま使える営業文
+- [営業サイト（Web制作サービス）](services/index.html) — 受注窓口・ポートフォリオ兼用
+- [制作サンプル: 美容室LP](services/samples/hair-salon.html) — ポートフォリオ用サンプル
 - [事業計画書](docs/business-plan.md) — ビジョン・市場・競合・ロードマップ・KPI
 - [会社設立・開業ガイド](docs/company-setup-guide.md) — 個人事業主での開業から法人化までの手順
 - [収益化設計](docs/monetization-plan.md) — フリーミアム設計・価格・課金実装（RevenueCat）

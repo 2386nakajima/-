@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LP・ホームページ制作 — 3日で公開、¥30,000から</title>
+<meta name="description" content="AIを活用した制作フローで、スマホ対応のLP・ホームページを最短3営業日・¥30,000から。文章がなくても質問に答えるだけでOK。公開作業まで丸ごとお任せください。">
+<style>
+  :root {
+    --bg: #fbfcfb;
+    --bg-alt: #eef4f0;
+    --text: #1c2b26;
+    --text-sub: #53645c;
+    --accent: #14705c;
+    --accent-strong: #0d5949;
+    --card: #ffffff;
+    --border: #d9e4de;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #101714;
+      --bg-alt: #17211d;
+      --text: #e6eee9;
+      --text-sub: #9db0a7;
+      --accent: #3cb896;
+      --accent-strong: #6fd0b4;
+      --card: #1b2621;
+      --border: #2c3b34;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.85;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+  .eyebrow {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.14em;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 14px;
+  }
+  header.hero { padding: 72px 0 60px; border-bottom: 1px solid var(--border); }
+  h1 {
+    font-size: clamp(27px, 5vw, 42px);
+    line-height: 1.4; font-weight: 800; letter-spacing: 0.01em;
+    max-width: 700px; text-wrap: balance;
+  }
+  h1 .num { color: var(--accent); }
+  .lead { margin-top: 20px; max-width: 620px; color: var(--text-sub); font-size: clamp(15px, 2.4vw, 16.5px); }
+  .hero-points { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .point {
+    font-size: 13.5px; font-weight: 600;
+    background: var(--bg-alt); color: var(--text);
+    border: 1px solid var(--border); border-radius: 999px; padding: 5px 16px;
+  }
+  .cta {
+    display: inline-block; margin-top: 32px;
+    background: var(--accent); color: #fff;
+    font-weight: 700; font-size: 16.5px;
+    padding: 14px 36px; border-radius: 10px; text-decoration: none;
+  }
+  .cta:hover { background: var(--accent-strong); }
+  .cta.ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); margin-left: 12px; }
+  .cta.ghost:hover { background: var(--bg-alt); }
+  section { padding: 60px 0; }
+  section.alt { background: var(--bg-alt); }
+  h2 { font-size: clamp(21px, 3.6vw, 28px); font-weight: 800; margin-bottom: 8px; }
+  .sub { color: var(--text-sub); margin-bottom: 36px; max-width: 640px; }
+  .grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px 22px;
+  }
+  .card h3 { font-size: 16.5px; margin-bottom: 8px; }
+  .card p { font-size: 14px; color: var(--text-sub); }
+  .flow { counter-reset: step; display: grid; gap: 14px; max-width: 640px; }
+  .flow li {
+    list-style: none; counter-increment: step;
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 18px 16px 58px; position: relative; font-size: 14.5px;
+  }
+  .flow li strong { display: block; font-size: 15.5px; margin-bottom: 2px; }
+  .flow li::before {
+    content: counter(step);
+    position: absolute; left: 16px; top: 18px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    font-weight: 700; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .flow li span { color: var(--text-sub); }
+  table.price {
+    width: 100%; border-collapse: collapse; background: var(--card);
+    border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+    font-size: 14.5px;
+  }
+  .table-scroll { overflow-x: auto; border-radius: 14px; }
+  table.price th, table.price td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+  table.price th { background: var(--bg-alt); font-size: 13px; letter-spacing: 0.05em; }
+  table.price tr:last-child td { border-bottom: none; }
+  .price-num { font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .portfolio-note { font-size: 13.5px; color: var(--text-sub); margin-top: 14px; }
+  details {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 15px 20px; margin-bottom: 10px; max-width: 680px;
+  }
+  details summary { cursor: pointer; font-weight: 600; font-size: 15px; }
+  details p { margin-top: 8px; font-size: 14px; color: var(--text-sub); }
+  footer {
+    padding: 40px 0 56px; border-top: 1px solid var(--border);
+    font-size: 13px; color: var(--text-sub);
+  }
+  footer a { color: var(--text-sub); }
+  @media (max-width: 560px) {
+    .cta.ghost { margin-left: 0; margin-top: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">LP・ホームページ制作</div>
+    <h1>あなたのお店の紹介ページ、<br><span class="num">3日</span>で公開・<span class="num">¥30,000</span>から。</h1>
+    <p class="lead">文章も写真もなくてOK。7つの質問に答えるだけで、原稿づくりから公開作業まで丸ごとお任せいただけます。AIを制作工程に組み込むことで、短納期・低価格でも品質に妥協しません。</p>
+    <div class="hero-points">
+      <span class="point">スマホ対応</span>
+      <span class="point">修正2回まで無料</span>
+      <span class="point">公開作業込み</span>
+      <span class="point">追加費用なしの明朗会計</span>
+    </div>
+    <div>
+      <a class="cta" href="mailto:contact@example.com?subject=制作のご相談">無料で相談する</a>
+      <a class="cta ghost" href="#price">料金を見る</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>こんなお悩みありませんか</h2>
+    <p class="sub">小さなお店・個人事業の「ちょうどいいWeb」を専門にしています。</p>
+    <div class="grid">
+      <div class="card">
+        <h3>制作会社は高すぎる</h3>
+        <p>数十万円の見積もりに驚いた方へ。1ページ¥30,000、5ページでも¥50,000。追加費用は事前にすべてお伝えします。</p>
+      </div>
+      <div class="card">
+        <h3>何を載せればいいか分からない</h3>
+        <p>7つの質問にお答えいただくだけで、キャッチコピーから本文まで原稿はこちらで用意します。</p>
+      </div>
+      <div class="card">
+        <h3>とにかく急いでいる</h3>
+        <p>LPなら最短3営業日で公開まで完了。オープン日や告知に間に合わせます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>ご依頼から公開までの流れ</h2>
+    <p class="sub">やり取りはメール／チャットで完結します。</p>
+    <ul class="flow">
+      <li><strong>無料相談</strong><span>作りたいページの内容とご予算をお聞かせください。お見積もりを即日お出しします。</span></li>
+      <li><strong>質問票に回答（約10分）</strong><span>お店の強み・載せたい情報など7つの質問にお答えください。</span></li>
+      <li><strong>初稿確認（3営業日以内）</strong><span>実際にスマホで見られるURLをお送りします。修正は2回まで無料。</span></li>
+      <li><strong>公開・納品</strong><span>公開作業までこちらで行います。公開後の更新サポート（月¥3,000）もご用意しています。</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="price">
+  <div class="wrap">
+    <h2>料金</h2>
+    <p class="sub">すべて税込・公開作業込みの価格です。</p>
+    <div class="table-scroll">
+      <table class="price">
+        <tr><th>プラン</th><th>内容</th><th>価格</th><th>納期</th></tr>
+        <tr><td><strong>LPプラン</strong></td><td>1ページ／スマホ対応／お問い合わせ導線</td><td class="price-num">¥30,000</td><td>3営業日</td></tr>
+        <tr><td><strong>ホームページプラン</strong></td><td>5ページまで（トップ・サービス・料金・店舗情報・お問い合わせ）</td><td class="price-num">¥50,000</td><td>7営業日</td></tr>
+        <tr><td><strong>更新サポート</strong></td><td>月2回までの文言・画像差し替え、軽微な修正</td><td class="price-num">¥3,000/月</td><td>—</td></tr>
+        <tr><td>追加ページ</td><td>1ページ追加ごと</td><td class="price-num">¥8,000</td><td>—</td></tr>
+        <tr><td>特急対応</td><td>翌営業日納品</td><td class="price-num">+50%</td><td>1営業日</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>制作例</h2>
+    <p class="sub">実際の制作品質はこちらでご確認いただけます。</p>
+    <div class="grid">
+      <div class="card">
+        <h3>WakeUpQR 公式LP</h3>
+        <p>自社開発のiOSアプリ「WakeUpQR」の紹介ページ。ダークモード対応・スマホ最適化。<br><a href="../lp/index.html">ページを見る →</a></p>
+      </div>
+      <div class="card">
+        <h3>美容室のLP（サンプル）</h3>
+        <p>架空の美容室を題材にした制作サンプル。明朝体×落ち着いた配色で、小規模サロンの世界観を表現。<br><a href="samples/hair-salon.html">ページを見る →</a></p>
+      </div>
+      <div class="card">
+        <h3>このサイト自体</h3>
+        <p>今ご覧いただいているこのページも、実際の制作フローで作ったものです。この品質でお届けします。</p>
+      </div>
+    </div>
+    <p class="portfolio-note">※ 実績は随時追加していきます。掲載はお客様の許可をいただいたもののみです。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>よくある質問</h2>
+    <details>
+      <summary>本当に追加費用はかかりませんか？</summary>
+      <p>プラン価格に含まれる範囲はお見積もり時に書面でお渡しします。範囲を超えるご要望（ページ追加・特急対応など）は、作業前に必ず金額をご提示し、ご了承をいただいてから進めます。</p>
+    </details>
+    <details>
+      <summary>写真やロゴがありません。</summary>
+      <p>商用利用可能なフリー素材のご提案が可能です。ロゴがなくても、店名を美しく見せる文字デザインで対応できます。</p>
+    </details>
+    <details>
+      <summary>公開後に自分で直せますか？</summary>
+      <p>更新サポート（月¥3,000・いつでも解約可）で承るのが最も手軽です。ご自身で編集されたい場合は、編集手順書付きのお引き渡しもご相談ください。</p>
+    </details>
+    <details>
+      <summary>AIで作るとはどういうことですか？</summary>
+      <p>原稿作成やコーディングの工程に最新のAIを活用し、その分の工数削減を価格と納期に還元しています。要件のヒアリング、品質確認、公開作業は人間が責任を持って行います。</p>
+    </details>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>まずは無料相談から</h2>
+    <p class="sub">「こんなページは作れる？」だけでも歓迎です。24時間以内にお返事します。</p>
+    <a class="cta" href="mailto:contact@example.com?subject=制作のご相談">無料で相談する</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>運営者: 【あなたのお名前／屋号】 ／ お問い合わせ: contact@example.com</p>
+    <p style="margin-top: 8px;"><a href="#">特定商取引法に基づく表記（直接販売を行う場合は公開前に必ず作成）</a></p>
+    <p style="margin-top: 8px;">© 2026 【屋号】</p>
+  </div>
+</footer>
+
+</body>
+</html>

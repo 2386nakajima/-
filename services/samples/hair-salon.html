@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hair salon Lumo（制作サンプル）— 髪と、毎日を軽くする。</title>
+<meta name="description" content="※これは架空の美容室を題材にした制作サンプルページです。">
+<style>
+  :root {
+    --bg: #faf7f4;
+    --bg-alt: #f0e9e2;
+    --text: #2e2620;
+    --text-sub: #6f625a;
+    --accent: #9a6a4f;
+    --accent-strong: #7d5540;
+    --card: #ffffff;
+    --border: #e2d6cb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #191512;
+      --bg-alt: #221c18;
+      --text: #ede5de;
+      --text-sub: #b3a598;
+      --accent: #c99c7e;
+      --accent-strong: #dcb99f;
+      --card: #241e19;
+      --border: #3a2f27;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    background: var(--bg); color: var(--text); line-height: 2;
+  }
+  .sans { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif; }
+  .sample-banner {
+    background: var(--accent); color: #fff; text-align: center;
+    font-size: 12.5px; padding: 7px 16px; font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+  header.hero { padding: 84px 0 72px; text-align: center; }
+  .shop-name { font-size: 14px; letter-spacing: 0.35em; color: var(--accent); margin-bottom: 22px; }
+  h1 { font-size: clamp(26px, 5.4vw, 40px); font-weight: 600; line-height: 1.7; letter-spacing: 0.06em; }
+  .lead { margin: 24px auto 0; max-width: 480px; color: var(--text-sub); font-size: 15px; }
+  .cta {
+    display: inline-block; margin-top: 36px;
+    background: var(--accent); color: #fff;
+    font-size: 15.5px; font-weight: 600; letter-spacing: 0.08em;
+    padding: 14px 44px; border-radius: 4px; text-decoration: none;
+  }
+  .cta:hover { background: var(--accent-strong); }
+  section { padding: 56px 0; }
+  section.alt { background: var(--bg-alt); }
+  h2 { text-align: center; font-size: 21px; letter-spacing: 0.2em; margin-bottom: 8px; }
+  h2::after { content: ""; display: block; width: 36px; height: 1.5px; background: var(--accent); margin: 16px auto 0; }
+  .sub { text-align: center; color: var(--text-sub); font-size: 14px; margin-bottom: 36px; }
+  .menu { max-width: 520px; margin: 0 auto; }
+  .menu-row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+    padding: 14px 4px; border-bottom: 1px solid var(--border); font-size: 15px;
+  }
+  .menu-row .price { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--text-sub); }
+  .menu-row .dots { flex: 1; border-bottom: 1px dotted var(--border); transform: translateY(-4px); }
+  .info { max-width: 520px; margin: 0 auto; font-size: 14.5px; }
+  .info dt { color: var(--accent); font-weight: 600; margin-top: 18px; letter-spacing: 0.1em; }
+  .info dd { color: var(--text-sub); }
+  .voice-card {
+    max-width: 520px; margin: 0 auto 14px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+    padding: 20px 24px; font-size: 14.5px; color: var(--text-sub);
+  }
+  .voice-card cite { display: block; margin-top: 8px; font-style: normal; font-size: 12.5px; color: var(--accent); }
+  footer { padding: 36px 0 52px; text-align: center; font-size: 12.5px; color: var(--text-sub); }
+</style>
+</head>
+<body>
+
+<div class="sample-banner">※ これは架空の美容室「hair salon Lumo」を題材にした制作サンプルです。実在の店舗ではありません。</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="shop-name sans">HAIR SALON LUMO — 高円寺</div>
+    <h1>髪と、毎日を<br>すこし軽くする場所。</h1>
+    <p class="lead sans">席数2席のちいさなサロンです。カウンセリングに時間をかけ、乾かすだけで決まる「手のかからない髪」をお作りします。</p>
+    <a class="cta sans" href="#reserve">ご予約はこちら</a>
+  </div>
+</header>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>MENU</h2>
+    <p class="sub sans">すべてシャンプー・ブロー込みの料金です。</p>
+    <div class="menu sans">
+      <div class="menu-row"><span>カット</span><span class="dots"></span><span class="price">¥5,500</span></div>
+      <div class="menu-row"><span>カット＋カラー</span><span class="dots"></span><span class="price">¥11,000</span></div>
+      <div class="menu-row"><span>カット＋パーマ</span><span class="dots"></span><span class="price">¥12,100</span></div>
+      <div class="menu-row"><span>トリートメント</span><span class="dots"></span><span class="price">¥4,400</span></div>
+      <div class="menu-row"><span>ヘッドスパ（30分）</span><span class="dots"></span><span class="price">¥4,950</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>ABOUT</h2>
+    <p class="sub sans">はじめての方へ</p>
+    <div class="voice-card sans">
+      「毎朝のセットが大変」「美容室の会話がすこし苦手」——そんな方にこそ来ていただきたいサロンです。施術中の会話量もカウンセリングでお選びいただけます。
+      <cite>店主より</cite>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="reserve">
+  <div class="wrap">
+    <h2>ACCESS</h2>
+    <dl class="info sans">
+      <dt>住所</dt><dd>東京都杉並区（架空の住所です）／高円寺駅 徒歩5分</dd>
+      <dt>営業時間</dt><dd>10:00–19:00（最終受付 カット18:00／カラー17:00）</dd>
+      <dt>定休日</dt><dd>火曜・第3水曜</dd>
+      <dt>ご予約</dt><dd>お電話（00-0000-0000）または予約サイトから</dd>
+    </dl>
+    <div style="text-align: center;">
+      <a class="cta sans" href="#">予約サイトへ（サンプル）</a>
+    </div>
+  </div>
+</section>
+
+<footer class="sans">
+  <div class="wrap">
+    <p>hair salon Lumo（架空店舗・制作サンプル）</p>
+    <p style="margin-top: 6px;">制作: <a href="../index.html" style="color: var(--accent);">LP・ホームページ制作サービス</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
