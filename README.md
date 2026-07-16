@@ -4,6 +4,24 @@
 
 **注意:** 通常のアプリ操作ではQR一致までアラームを解除できない設計ですが、iPhoneの再起動・アプリ削除・OS設定変更・強制終了などを完全に防止することはできません。
 
+## 事業ドキュメント
+
+WakeUpQRを商用ローンチするための計画書一式（`docs/`）と公開用LP（`lp/`）:
+
+- [事業計画書](docs/business-plan.md) — ビジョン・市場・競合・ロードマップ・KPI
+- [会社設立・開業ガイド](docs/company-setup-guide.md) — 個人事業主での開業から法人化までの手順
+- [収益化設計](docs/monetization-plan.md) — フリーミアム設計・価格・課金実装（RevenueCat）
+- [ランディングページ](lp/index.html) — 事前登録受付用のLP
+
+### LPをWebで公開する（GitHub Pages・無料）
+
+1. GitHubのリポジトリページで **Settings → Pages** を開く
+2. 「Build and deployment」の Source を **Deploy from a branch** にする
+3. Branch にこのブランチ、フォルダに `/ (root)` を選んで Save
+4. 数分後、`https://<ユーザー名>.github.io/<リポジトリ名>/lp/` でLPが公開される
+
+公開前に `lp/index.html` 内の事前登録メールアドレス（`wakeupqr@example.com`）を実際の連絡先（またはGoogleフォームのURL）に差し替えること。
+
 ## 開発の進め方
 
 - **Phase A（Windowsで開発中）**: 画面・QR読み取り・設定保存・疑似アラームを React Native + Expo で実装

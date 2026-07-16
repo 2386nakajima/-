@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WakeUpQR — QRコードを読み取るまで止まらない目覚まし</title>
+<meta name="description" content="洗面所や玄関に貼ったQRコードをスキャンするまでアラームが止まらない。二度寝を物理的に不可能にする目覚ましアプリ WakeUpQR。">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f2f7fc;
+    --text: #17222e;
+    --text-sub: #4a5a6a;
+    --accent: #208aef;
+    --accent-dark: #1668b8;
+    --card: #ffffff;
+    --border: #dce6f0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e141b;
+      --bg-alt: #151d27;
+      --text: #e8eef4;
+      --text-sub: #9fb0c0;
+      --accent: #4da3f5;
+      --accent-dark: #77bbf8;
+      --card: #1a2430;
+      --border: #2a3a4c;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  header.hero {
+    background: var(--bg-alt);
+    padding: 72px 0 64px;
+    text-align: center;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    padding: 3px 14px;
+    margin-bottom: 20px;
+  }
+  h1 { font-size: clamp(28px, 5.5vw, 44px); line-height: 1.35; letter-spacing: 0.01em; }
+  h1 .accent { color: var(--accent); }
+  .lead { margin: 20px auto 0; max-width: 560px; color: var(--text-sub); font-size: clamp(15px, 2.5vw, 17px); }
+  .cta {
+    display: inline-block;
+    margin-top: 32px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 17px;
+    padding: 14px 40px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .cta:hover { opacity: 0.85; }
+  .cta-note { margin-top: 10px; font-size: 13px; color: var(--text-sub); }
+  section { padding: 64px 0; }
+  section.alt { background: var(--bg-alt); }
+  h2 { font-size: clamp(22px, 4vw, 30px); text-align: center; margin-bottom: 12px; }
+  .sub { text-align: center; color: var(--text-sub); margin-bottom: 40px; }
+  .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 26px 22px;
+  }
+  .card .step {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--accent); color: #fff; font-weight: 700; margin-bottom: 14px;
+  }
+  .card h3 { font-size: 17px; margin-bottom: 8px; }
+  .card p { font-size: 14.5px; color: var(--text-sub); }
+  .emoji { font-size: 30px; display: block; margin-bottom: 12px; }
+  .pricing { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); max-width: 640px; margin: 0 auto; }
+  .price-card { position: relative; }
+  .price-card.pro { border-color: var(--accent); border-width: 2px; }
+  .price-tag { font-size: 34px; font-weight: 800; margin: 10px 0 2px; }
+  .price-tag small { font-size: 14px; font-weight: 600; color: var(--text-sub); }
+  .plan-label { font-weight: 700; color: var(--accent); font-size: 14px; }
+  ul.feat { list-style: none; margin-top: 14px; }
+  ul.feat li { font-size: 14.5px; padding: 5px 0 5px 26px; position: relative; color: var(--text-sub); }
+  ul.feat li::before { content: "✓"; position: absolute; left: 4px; color: var(--accent); font-weight: 700; }
+  details {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  details summary { cursor: pointer; font-weight: 600; font-size: 15px; }
+  details p { margin-top: 10px; font-size: 14.5px; color: var(--text-sub); }
+  .notice {
+    max-width: 680px; margin: 0 auto;
+    font-size: 13.5px; color: var(--text-sub);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 22px; background: var(--card);
+  }
+  footer { padding: 40px 0 56px; text-align: center; font-size: 13px; color: var(--text-sub); }
+  footer a { color: var(--text-sub); margin: 0 10px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="badge">iOS向け・近日公開</div>
+    <h1>QRコードを読み取るまで、<br><span class="accent">絶対に止まらない</span>目覚まし。</h1>
+    <p class="lead">洗面所や玄関に貼ったQRコードをスキャンしない限り、アラームは鳴り続けます。布団の中でアラームを止めて二度寝——それを物理的に不可能にするのが WakeUpQR です。</p>
+    <a class="cta" href="mailto:wakeupqr@example.com?subject=WakeUpQR%20事前登録&body=公開時に通知を希望します。">事前登録する（無料）</a>
+    <p class="cta-note">メールアドレスのみ・公開時に一度だけご連絡します</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>使い方は3ステップ</h2>
+    <p class="sub">設定は最初の1回だけ。あとは毎朝、体が勝手に起きます。</p>
+    <div class="grid">
+      <div class="card">
+        <span class="step">1</span>
+        <h3>QRコードを登録する</h3>
+        <p>洗面所・玄関・冷蔵庫など「起きたら必ず行く場所」にあるQRコードをアプリに登録します。手持ちのQR付きの日用品でもOK。</p>
+      </div>
+      <div class="card">
+        <span class="step">2</span>
+        <h3>アラームをセットする</h3>
+        <p>時刻を決めるだけ。難しい設定はありません。</p>
+      </div>
+      <div class="card">
+        <span class="step">3</span>
+        <h3>スキャンするまで鳴り続ける</h3>
+        <p>朝、登録したQRコードをカメラで読み取るまでアラームは止まりません。ベッドから出て、歩いて、スキャンする——起きるしかありません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>WakeUpQR が選ばれる理由</h2>
+    <p class="sub">機能の多さではなく、「確実に起きられること」だけを追求しました。</p>
+    <div class="grid">
+      <div class="card">
+        <span class="emoji">🛏️</span>
+        <h3>二度寝を物理的に防ぐ</h3>
+        <p>計算問題やシェイクと違い、QRスキャンは布団の中では完了できません。「立って歩く」ことがそのまま解除条件になります。</p>
+      </div>
+      <div class="card">
+        <span class="emoji">🎯</span>
+        <h3>迷わないシンプル設計</h3>
+        <p>やることは「QR登録」と「時刻セット」だけ。多機能アプリにありがちな複雑さを徹底的に排除しました。</p>
+      </div>
+      <div class="card">
+        <span class="emoji">🔒</span>
+        <h3>プライバシー最優先</h3>
+        <p>カメラはQRの読み取りだけに使い、映像やQRの内容を外部に送信しません。すべて端末の中で完結します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>料金プラン</h2>
+    <p class="sub">基本機能はずっと無料。サブスクではなく、一度きりの買い切りです。</p>
+    <div class="pricing">
+      <div class="card price-card">
+        <div class="plan-label">FREE</div>
+        <div class="price-tag">¥0</div>
+        <ul class="feat">
+          <li>QRアラーム 1件</li>
+          <li>登録QRコード 1枚</li>
+          <li>基本アラーム音</li>
+        </ul>
+      </div>
+      <div class="card price-card pro">
+        <div class="plan-label">PRO（買い切り）</div>
+        <div class="price-tag">¥600 <small>/ 一度だけ</small></div>
+        <ul class="feat">
+          <li>アラーム・QRコード無制限</li>
+          <li>厳格モード（スヌーズ禁止・音量固定）</li>
+          <li>起床履歴・統計</li>
+          <li>全アラーム音＋カスタム</li>
+          <li>バックアップ・引き継ぎ</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>よくある質問</h2>
+    <div style="max-width: 680px; margin: 0 auto;">
+      <details>
+        <summary>本当に止められないんですか？</summary>
+        <p>通常のアプリ操作では、登録したQRコードをスキャンするまで解除できない設計です。ただし、iPhoneの再起動・アプリの削除・OS設定の変更・強制終了などを完全に防ぐことはできません。この点は正直にお伝えします。</p>
+      </details>
+      <details>
+        <summary>QRコードは何を使えばいいですか？</summary>
+        <p>お手持ちのQRコード付きの物（日用品のパッケージなど）でも、印刷したQRコードでも使えます。「起きたら必ず行く場所」に置くのがコツです。</p>
+      </details>
+      <details>
+        <summary>Android版はありますか？</summary>
+        <p>まずはiOS版からリリースします。Android版はiOS版の反響を見て検討します。</p>
+      </details>
+      <details>
+        <summary>カメラの映像はどこかに送られますか？</summary>
+        <p>いいえ。カメラはQRコードの読み取りのみに使用し、映像・QRの内容が端末の外に送信されることはありません。</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="text-align: center;">
+    <h2>明日の朝から、起きられる自分に。</h2>
+    <p class="sub">公開時にお知らせします。登録は10秒で終わります。</p>
+    <a class="cta" href="mailto:wakeupqr@example.com?subject=WakeUpQR%20事前登録&body=公開時に通知を希望します。">事前登録する（無料）</a>
+    <div class="notice" style="margin-top: 40px; text-align: left;">
+      <strong>ご利用上の注意:</strong> WakeUpQRは通常のアプリ操作ではQRコードの一致までアラームを解除できない設計ですが、デバイスの再起動・アプリ削除・OS設定変更・強制終了等による解除を完全に防止するものではありません。重要な予定には複数の起床手段の併用をおすすめします。
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="#">プライバシーポリシー（準備中）</a>
+      <a href="#">利用規約（準備中）</a>
+      <a href="#">特定商取引法に基づく表記（準備中）</a>
+    </div>
+    <p style="margin-top: 12px;">© 2026 WakeUpQR</p>
+  </div>
+</footer>
+
+</body>
+</html>
