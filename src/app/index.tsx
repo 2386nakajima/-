@@ -11,11 +11,11 @@ import {
   Screen,
   styles,
 } from '@/components/ui';
-import { AnthropicError, generateWithClaude } from '@/lib/anthropic';
+import { AIError, generateWithAI, hasKey } from '@/lib/ai';
 import { generateOffline } from '@/lib/generator';
 import { addQuestions, addSource, useDB } from '@/lib/storage';
 import { colors, space } from '@/lib/theme';
-import { Draft } from '@/lib/types';
+import { Draft, providerInfo } from '@/lib/types';
 
 type Candidate = Draft & { selected: boolean };
 
@@ -29,6 +29,8 @@ export default function CreateScreen() {
   const [error, setError] = useState('');
 
   const target = settings.questionCount;
+  const provider = providerInfo(settings.provider);
+  const keyReady = hasKey(settings);
   const selectedCount = candidates.filter((c) => c.selected).length;
 
   const run = async (mode: 'ai' | 'offline') => {
@@ -42,14 +44,13 @@ export default function CreateScreen() {
     try {
       let drafts: Draft[];
       if (mode === 'ai') {
-        setStatus('Claudeで生成中…');
-        drafts = await generateWithClaude(
-          settings.apiKey,
-          settings.model,
+        setStatus('AIで生成中…');
+        drafts = await generateWithAI(
+          settings,
           transcript,
           target,
           (done, total) => {
-            if (total > 1) setStatus(`Claudeで生成中… (${done}/${total})`);
+            if (total > 1) setStatus(`AIで生成中… (${done}/${total})`);
           },
         );
       } else {
@@ -63,9 +64,7 @@ export default function CreateScreen() {
       );
     } catch (e) {
       setError(
-        e instanceof AnthropicError
-          ? e.message
-          : `生成に失敗しました: ${String(e)}`,
+        e instanceof AIError ? e.message : `生成に失敗しました: ${String(e)}`,
       );
     } finally {
       setBusy(false);
@@ -113,7 +112,7 @@ export default function CreateScreen() {
           <Button
             title={busy ? '生成中…' : `AIで${target}問作る`}
             onPress={() => run('ai')}
-            disabled={busy || !settings.apiKey}
+            disabled={busy || !keyReady}
           />
           <Button
             title="AIなしで作る（オフライン）"
@@ -122,13 +121,18 @@ export default function CreateScreen() {
             disabled={busy}
           />
         </Row>
-        {!settings.apiKey ? (
-          <View style={{ marginTop: space.md }}>
+        <View style={{ marginTop: space.md }}>
+          {keyReady ? (
             <Muted>
-              APIキーを設定するとClaudeによる高品質な生成が使えます（設定タブ）。未設定でもオフライン生成は利用できます。
+              AI生成: {provider.label} / {settings.models[settings.provider]}
             </Muted>
-          </View>
-        ) : null}
+          ) : (
+            <Muted>
+              AI生成には無料のAPIキーが必要です（設定タブ → {provider.label}
+              ）。キーなしでもオフライン生成は使えます。
+            </Muted>
+          )}
+        </View>
         {status ? (
           <Text
             style={[

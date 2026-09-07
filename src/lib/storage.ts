@@ -82,8 +82,13 @@ function subscribe(listener: () => void) {
 
 const getSnapshot = () => db;
 
+/** 静的HTMLと初回描画を一致させるための空データ（参照を固定する） */
+const SSR_DB: DB = emptyDB();
+
 export function useDB(): DB {
-  return useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
+  // 第3引数はハイドレーション時に使われる。事前生成HTMLは空データで描画されている
+  // ため、ここでも空データを返して不一致を防ぐ（直後に実データで再描画される）。
+  return useSyncExternalStore(subscribe, getSnapshot, () => SSR_DB);
 }
 
 /* ---------------- 更新系 ---------------- */
