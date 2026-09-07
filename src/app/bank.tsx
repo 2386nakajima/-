@@ -38,6 +38,7 @@ export default function BankScreen() {
   const [adding, setAdding] = useState(false);
   const [newQ, setNewQ] = useState({ question: '', answer: '', tags: '' });
   const [importText, setImportText] = useState('');
+  const [exportText, setExportText] = useState('');
   const [message, setMessage] = useState('');
 
   const tags = useMemo(
@@ -335,6 +336,26 @@ export default function BankScreen() {
           </Card>
         ),
       )}
+
+      {exportText ? (
+        <Card>
+          <Row>
+            <Text style={styles.label}>書き出し内容（コピー用）</Text>
+            <Button
+              title="閉じる"
+              onPress={() => setExportText('')}
+              variant="ghost"
+              small
+            />
+          </Row>
+          <Field
+            value={exportText}
+            onChangeText={() => {}}
+            multiline
+            minHeight={140}
+          />
+        </Card>
+      ) : null}
 
       <Card>
         <Text style={styles.label}>JSONから取り込み</Text>
