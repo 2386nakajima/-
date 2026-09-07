@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "WakeUpQR",
-    "slug": "wakeupqr",
+    "name": "QuizBank",
+    "slug": "quizbank",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "wakeupqr",
+    "scheme": "quizbank",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
